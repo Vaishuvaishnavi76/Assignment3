@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Problem Solving</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #000000;
+            border-radius: 10px;
+            background-color: #f6f5f5;
+        }
+        button {
+            margin-top: 10px;
+            padding: 8px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .output {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>JS Problem Solving</h2>
+
+    <div class="container">
+        <h3>1. ATM Withdrawal</h3>
+        Balance: <input type="number" id="balance"><br>
+        Amount: <input type="number" id="amount"><br>
+        PIN: <input type="password" id="pin"><br>
+        Enter PIN: <input type="password" id="enteredPin"><br>
+        <button onclick="atmWithdrawal()">Withdraw</button>
+        <div class="output" id="atmOutput"></div>
+    </div>
+
+    <div class="container">
+        <h3>2. Online Shopping Discount</h3>
+        Order Amount: <input type="number" id="orderAmount"><br>
+        <button onclick="calculateFinalAmount()">Calculate</button>
+        <div class="output" id="shoppingOutput"></div>
+    </div>
+
+    <div class="container">
+        <h3>3. Student Grading</h3>
+        Marks: <input type="number" id="marks"><br>
+        Attendance (%): <input type="number" id="attendance"><br>
+        <button onclick="calculateGrade()">Get Grade</button>
+        <div class="output" id="gradeOutput"></div>
+    </div>
+
+    <div class="container">
+        <h3>4. Smart Traffic Light</h3>
+        Traffic Density (Heavy, Moderate, Light): <input type="text" id="trafficDensity"><br>
+        <button onclick="trafficLightControl()">Check Time</button>
+        <div class="output" id="trafficOutput"></div>
+    </div>
+
+    <div class="container">
+        <h3>5. Movie Ticket Pricing</h3>
+        Age: <input type="number" id="age"><br>
+        Show Time (24-hour format): <input type="number" id="showTime"><br>
+        <button onclick="calculateTicketPrice()">Get Price</button>
+        <div class="output" id="ticketOutput"></div>
+    </div>
+
+    <div class="container">
+        <h3>6. Job Application</h3>
+        Age: <input type="number" id="jobAge"><br>
+        Experience (years): <input type="number" id="experience"><br>
+        Qualification: <input type="text" id="qualification"><br>
+        <button onclick="isEligibleForJob()">Check Eligibility</button>
+        <div class="output" id="jobOutput"></div>
+    </div>
+
+    <div class="container">
+        <h3>7. E-commerce Coupon</h3>
+        Order Amount: <input type="number" id="couponOrder"><br>
+        Coupon Code: <input type="text" id="couponCode"><br>
+        <button onclick="applyCoupon()">Apply Coupon</button>
+        <div class="output" id="couponOutput"></div>
+    </div>
+
+    <div class="container">
+        <h3>8. Fitness Membership</h3>
+        Plan Type (Basic, Premium, VIP): <input type="text" id="planType"><br>
+        Wants Trainer? (yes/no): <input type="text" id="wantsTrainer"><br>
+        Wants Diet Plan? (yes/no): <input type="text" id="wantsDietPlan"><br>
+        <button onclick="choosePlan()">Get Plan</button>
+        <div class="output" id="planOutput"></div>
+    </div>
+
+    <div class="container">
+        <h3>9. Electricity Bill</h3>
+        Units Consumed: <input type="number" id="units"><br>
+        Time of Day (24-hour format): <input type="number" id="timeOfDay"><br>
+        <button onclick="calculateElectricityBill()">Get Bill</button>
+        <div class="output" id="electricityOutput"></div>
+    </div>
+
+    <div class="container">
+        <h3>10. Flight Ticket</h3>
+        Class Type (Economy, Business, First): <input type="text" id="classType"><br>
+        Luggage Weight (kg): <input type="number" id="luggageWeight"><br>
+        Student? (yes/no): <input type="text" id="isStudent"><br>
+        Senior Citizen? (yes/no): <input type="text" id="isSenior"><br>
+        <button onclick="calculateFlightFare()">Get Fare</button>
+        <div class="output" id="flightOutput"></div>
+    </div>
+
+    <script>
+        function atmWithdrawal() {
+            let balance = parseFloat(document.getElementById("balance").value);
+            let amount = parseFloat(document.getElementById("amount").value);
+            let pin = document.getElementById("pin").value;
+            let enteredPin = document.getElementById("enteredPin").value;
+
+            document.getElementById("atmOutput").innerText = 
+                enteredPin !== pin ? "Incorrect PIN!" : 
+                amount > balance ? "Insufficient balance!" : 
+                `Withdrawal Successful! Remaining Balance: $${(balance - amount).toFixed(2)}`;
+        }
+
+        function calculateFinalAmount() {
+            let amount = parseFloat(document.getElementById("orderAmount").value);
+            let discount = amount >= 1000 ? amount * 0.1 : 0;
+            document.getElementById("shoppingOutput").innerText = `Final Amount: $${(amount - discount).toFixed(2)}`;
+        }
+
+        function calculateGrade() {
+            let marks = parseFloat(document.getElementById("marks").value);
+            let attendance = parseFloat(document.getElementById("attendance").value);
+            let grade = marks >= 90 ? "A" : marks >= 75 ? "B" : marks >= 50 ? "C" : "F";
+            document.getElementById("gradeOutput").innerText = `Grade: ${attendance < 75 ? "F (Low Attendance)" : grade}`;
+        }
+
+        function trafficLightControl() {
+            let density = document.getElementById("trafficDensity").value.toLowerCase();
+            let time = density === "heavy" ? 60 : density === "moderate" ? 40 : 20;
+            document.getElementById("trafficOutput").innerText = `Green Light: ${time} seconds`;
+        }
+
+        function calculateTicketPrice() {
+            let age = parseInt(document.getElementById("age").value);
+            let showTime = parseInt(document.getElementById("showTime").value);
+            let price = 10;
+
+            if (age < 18) {
+                price = 8;
+            } else if (age > 60) {
+                price = 6;
+            }
+
+            if (showTime >= 18) {
+                price += 2;
+            }
+
+            document.getElementById("ticketOutput").innerText = `Ticket Price: $${price}`;
+        }
+
+        function isEligibleForJob() {
+            let age = parseInt(document.getElementById("jobAge").value);
+            let experience = parseInt(document.getElementById("experience").value);
+            let qualification = document.getElementById("qualification").value.toLowerCase();
+
+            if (age >= 18 && experience >= 2 && (qualification === "bachelor" || qualification === "master")) {
+                document.getElementById("jobOutput").innerText = "Eligible for the job!";
+            } else {
+                document.getElementById("jobOutput").innerText = "Not eligible for the job!";
+            }
+        }
+
+        function applyCoupon() {
+            let orderAmount = parseFloat(document.getElementById("couponOrder").value);
+            let couponCode = document.getElementById("couponCode").value;
+
+            if (couponCode === "DISCOUNT10" && orderAmount >= 100) {
+                let discount = orderAmount * 0.1;
+                document.getElementById("couponOutput").innerText = `Discount Applied! Final Amount: $${(orderAmount - discount).toFixed(2)}`;
+            } else {
+                document.getElementById("couponOutput").innerText = "Invalid Coupon Code or Minimum Order Not Met!";
+            }
+        }
+
+        function choosePlan() {
+            let planType = document.getElementById("planType").value.toLowerCase();
+            let wantsTrainer = document.getElementById("wantsTrainer").value.toLowerCase();
+            let wantsDietPlan = document.getElementById("wantsDietPlan").value.toLowerCase();
+            let cost = planType === "basic" ? 20 : planType === "premium" ? 30 : 50;
+
+            if (wantsTrainer === "yes") cost += 15;
+            if (wantsDietPlan === "yes") cost += 10;
+
+            document.getElementById("planOutput").innerText = `Total Plan Cost: $${cost}`;
+        }
+
+        function calculateElectricityBill() {
+            let units = parseFloat(document.getElementById("units").value);
+            let timeOfDay = parseInt(document.getElementById("timeOfDay").value);
+            let rate = timeOfDay >= 18 ? 0.15 : 0.1;
+
+            let bill = units * rate;
+            document.getElementById("electricityOutput").innerText = `Electricity Bill: $${bill.toFixed(2)}`;
+        }
+
+        function calculateFlightFare() {
+            let classType = document.getElementById("classType").value.toLowerCase();
+            let luggageWeight = parseFloat(document.getElementById("luggageWeight").value);
+            let isStudent = document.getElementById("isStudent").value.toLowerCase();
+            let isSenior = document.getElementById("isSenior").value.toLowerCase();
+
+            let fare = classType === "economy" ? 100 : classType === "business" ? 200 : 300;
+
+            if (luggageWeight > 20) fare += 50;
+            if (isStudent === "yes") fare -= 20;
+            if (isSenior === "yes") fare -= 30;
+
+            document.getElementById("flightOutput").innerText = `Flight Fare: $${fare}`;
+        }
+    </script>
+
+</body>
+</html>
